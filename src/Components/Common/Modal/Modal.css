@@ -1,0 +1,125 @@
+.modal-backdrop.show {
+  z-index: 1;
+}
+.modal-dialog {
+  z-index: 2;
+}
+.fadeIn-enter .modal-dialog {
+    transform: translateY(-2vh);
+}
+.fadeIn-enter-active .modal-dialog {
+    transform: translateY(0);
+    transition: transform 500ms ease-out;
+}
+.fadeIn-exit .modal-dialog {
+    transform: translateY(0);
+}
+.fadeIn-exit-active .modal-dialog {
+    transform: translateY(-2vh);
+    transition: transform 500ms ease-in;
+}
+
+.modal-header,
+.modal-footer {
+  background: #000;
+}
+
+.aboutPay {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.toPay,
+.sumToPay {
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toPay {
+  color: #ffffff61;
+  font-size: 13px;
+}
+
+.sumToPay {
+  color: #fff;
+  font-size: 18px;
+}
+
+.modalForm {
+  padding: 0;
+  margin: 20px auto;
+  width: 90%;
+  box-shadow: 0px 0px 10px #c5c3c3d9;
+  border-radius: .3rem;
+}
+
+.modalForm--header {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px dashed #3333333d;
+}
+
+.infoCard--text {
+  padding-left: 10px;
+}
+
+.circleIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  background: #5895d4;
+  border: transparent;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.newCard {
+  color: #5895d4;
+  margin: 0;
+  font-weight: 600;
+}
+
+.typeCard {
+  color: #33333385;
+  font-size: 12px;
+  margin: 0;
+}
+
+.circleSmallIcon {
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border: transparent;
+  border-radius: 50%;
+}
+
+.modal-content .modal-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footerLogo {
+  width: 75px;
+}
+
+.modal-footer .footerLogoPay {
+  line-height: 0;
+  font-size: 22px;
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+}
+
+.modal-dialog {
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0px;
+  right: -30px;
+}

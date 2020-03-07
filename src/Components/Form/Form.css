@@ -1,0 +1,70 @@
+.infoCard  {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  margin: 30px auto 0;
+}
+
+.inputNumberCard,
+.inputCardOwner {
+  width: 80%;
+}
+
+.inputCardExpiry,
+.inputCvv {
+  width: 40%;
+  margin-left: 10px;
+}
+
+.label {
+  margin: 0 0 5px;
+  font-weight: 500;
+  color: #444;
+}
+
+.payment {
+  border-top: 1px dashed #3333333d;
+  margin-top: 30px;
+}
+
+.paymentWrap {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.paymentCheckbox {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.labelCheckbox {
+  margin: 0 0 4px 5px;
+}
+
+.buttonIsDisabled {
+  pointer-events: none;
+  width: 70%;
+  margin: 20px auto 10px;
+}
+
+.timer {
+  margin: 0 auto;
+}
+
+.successfulPayment {
+  width: 50%;
+  height: 30px;
+  background: #1e7e3459;
+  border-radius: .5rem;
+  position: absolute;
+  top: 175px;
+  left: 25%;
+}
+
+.successfulPayment--text {
+  text-align: center;
+}
