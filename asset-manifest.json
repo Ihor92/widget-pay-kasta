@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/widget-pay-kasta/static/css/main.805815f6.chunk.css",
-    "main.js": "/widget-pay-kasta/static/js/main.ae19698b.chunk.js",
-    "main.js.map": "/widget-pay-kasta/static/js/main.ae19698b.chunk.js.map",
+    "main.css": "/widget-pay-kasta/static/css/main.798394a4.chunk.css",
+    "main.js": "/widget-pay-kasta/static/js/main.517de485.chunk.js",
+    "main.js.map": "/widget-pay-kasta/static/js/main.517de485.chunk.js.map",
     "runtime-main.js": "/widget-pay-kasta/static/js/runtime-main.cd73a78c.js",
     "runtime-main.js.map": "/widget-pay-kasta/static/js/runtime-main.cd73a78c.js.map",
     "static/css/2.de424728.chunk.css": "/widget-pay-kasta/static/css/2.de424728.chunk.css",
-    "static/js/2.64b585f9.chunk.js": "/widget-pay-kasta/static/js/2.64b585f9.chunk.js",
-    "static/js/2.64b585f9.chunk.js.map": "/widget-pay-kasta/static/js/2.64b585f9.chunk.js.map",
+    "static/js/2.15d0b620.chunk.js": "/widget-pay-kasta/static/js/2.15d0b620.chunk.js",
+    "static/js/2.15d0b620.chunk.js.map": "/widget-pay-kasta/static/js/2.15d0b620.chunk.js.map",
     "index.html": "/widget-pay-kasta/index.html",
-    "precache-manifest.f351a75665d131ce0a2557312d256ecc.js": "/widget-pay-kasta/precache-manifest.f351a75665d131ce0a2557312d256ecc.js",
+    "precache-manifest.6bb5bb4a0c378c89fa71a52b4d5b8a33.js": "/widget-pay-kasta/precache-manifest.6bb5bb4a0c378c89fa71a52b4d5b8a33.js",
     "service-worker.js": "/widget-pay-kasta/service-worker.js",
     "static/css/2.de424728.chunk.css.map": "/widget-pay-kasta/static/css/2.de424728.chunk.css.map",
-    "static/css/main.805815f6.chunk.css.map": "/widget-pay-kasta/static/css/main.805815f6.chunk.css.map",
-    "static/js/2.64b585f9.chunk.js.LICENSE.txt": "/widget-pay-kasta/static/js/2.64b585f9.chunk.js.LICENSE.txt",
-    "static/media/mk-logo.svg": "/widget-pay-kasta/static/media/mk-logo.ceeec732.svg"
+    "static/css/main.798394a4.chunk.css.map": "/widget-pay-kasta/static/css/main.798394a4.chunk.css.map",
+    "static/js/2.15d0b620.chunk.js.LICENSE.txt": "/widget-pay-kasta/static/js/2.15d0b620.chunk.js.LICENSE.txt",
+    "static/media/mk-logo.svg": "/widget-pay-kasta/static/media/mk-logo.ceeec732.svg",
+    "static/media/question.svg": "/widget-pay-kasta/static/media/question.59de4166.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cd73a78c.js",
     "static/css/2.de424728.chunk.css",
-    "static/js/2.64b585f9.chunk.js",
-    "static/css/main.805815f6.chunk.css",
-    "static/js/main.ae19698b.chunk.js"
+    "static/js/2.15d0b620.chunk.js",
+    "static/css/main.798394a4.chunk.css",
+    "static/js/main.517de485.chunk.js"
   ]
 }
