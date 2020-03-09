@@ -1,6 +1,6 @@
 import React from 'react';
 import Animation from '../Animation/Animation';
-import Form from '../../Form/Form';
+import FormContainer from '../../Form';
 import logo from '../../../mk-logo.svg';
 
 
@@ -38,7 +38,7 @@ const Modal = ({ handleCloseModal, showModal, children }) => (
                 </div>
               </div>
               
-              <Form
+              <FormContainer
                 handleCloseModal={handleCloseModal}
                 sumToPay={sumToPay}
               />
