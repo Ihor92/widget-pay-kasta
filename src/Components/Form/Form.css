@@ -49,6 +49,9 @@
 
 .buttonIsDisabled {
   pointer-events: none;
+}
+
+.payment .btn {
   width: 70%;
   margin: 20px auto 10px;
 }

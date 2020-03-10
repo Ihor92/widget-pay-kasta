@@ -13,6 +13,7 @@ const Input = props => {
 
   return (
     <input
+      id={id}
       onChange={onChange}
       value={value}
       name={name}
