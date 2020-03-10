@@ -47,10 +47,12 @@ export default class FormContainer extends Component{
     const { handleCloseModal } = this.props;
     this.timerStart = setInterval(() => {
       let timerLefet = this.state.timer - 1;
+
       if (timerLefet === 0) {
         clearInterval(this.timerStart);
         handleCloseModal() ;
       }
+
       this.setState({
         timer: timerLefet
       })
@@ -72,6 +74,7 @@ export default class FormContainer extends Component{
 
   checkAllInputs = () => {
     const { cardNumber, cardExpiry, cardOwner, cvv } = this.state;
+
     if (cardNumber !== '' && cardExpiry !== '' && cardOwner !== '' && cvv !== '') {
       this.setState({
         buttonIsDisabled: false,
@@ -81,12 +84,13 @@ export default class FormContainer extends Component{
 
   checkDataLength = (event) => {
     const { cardExpiry, cvv, cardNumber, cardOwner } = this.state;
-    if (
-      cardNumber.length === validDataLength.cardNumber &&
-      cardExpiry.length === validDataLength.cardExpiry && 
-      cardOwner !== '' && 
-      cvv.length === validDataLength.cvv) {
-      
+
+    const cardNumberLength = cardNumber.length === validDataLength.cardNumber;
+    const cardExpiryLength = cardExpiry.length === validDataLength.cardExpiry;
+    const cardOwnerLength = cardOwner !== '';
+    const cvvLength = cvv.length === validDataLength.cvv;
+
+    if ( cardNumberLength && cardExpiryLength && cardOwnerLength && cvvLength) {
       if (corectMonth + lasNumbersYear <= cardExpiry) {
         this.handleSubmit();
       } else {
@@ -100,7 +104,6 @@ export default class FormContainer extends Component{
       event.preventDefault();
       
     }  else {
-      console.log("Невірне значеня");
       this.setState({
         showError: true,
         cvv: ''
@@ -118,7 +121,7 @@ export default class FormContainer extends Component{
 
     this.timerId = setTimeout(() => {
       handleCloseModal() ;
-    }, 1000);
+    }, 4000);
   }
 
   render() {

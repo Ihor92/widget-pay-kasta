@@ -1,8 +1,13 @@
 import React from 'react';
-
+import successful from '../Form/successful-payment.svg';
 export function SuccessfulPay() {
   return (
-    <p className="successfulPayment--text">Оплата прошла успешно</p>
+    <div className="successfulPaymentPopup">
+      <p className="successfulPayment--text">
+        Оплата прошла успешно
+      </p>
+      <img className="successfulIcon" src={successful} alt="Icon" />
+    </div>
   )
 };
 
@@ -44,4 +49,11 @@ export const descriptionForInputs = {
   descriptionRemember: "Запам'ятати цю картку",
   descriptionPay: "Оплатити",
   descriptionTimer: "На виконання платежу ",
+}
+
+export const placeholdDescription = {
+  placeholdNumberCard: "#### #### #### ####",
+  placeholdCardExpiry: "ММ / РР",
+  placeholdCardOwner: "CARDHOLDER NAME",
+  placeholdCvv: "XXX",
 }

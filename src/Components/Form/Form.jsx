@@ -2,6 +2,7 @@ import React from 'react';
 import Input from '../Input/Input';
 import ReactTooltip from 'react-tooltip'
 import help from './question.svg'
+
 import {
   SuccessfulPay,
   InvalidCard,
@@ -9,17 +10,10 @@ import {
   EnterName,
   CheckCvv,
   tooltipMessages,
-  descriptionForInputs
+  descriptionForInputs,
+  placeholdDescription
 } from '../HelperMessages/HelperMessages';
 import './Form.css';
-
-
-const validDataLength = {
-  cardNumber: 16,
-  cardExpiry: 4,
-  cvv: 3,
-  cardOwner: 40,
-}
 
 const Form = (props) => {
   const {
@@ -51,6 +45,13 @@ const Form = (props) => {
     descriptionTimer,
   } = descriptionForInputs;
   
+  const {
+    placeholdNumberCard,
+    placeholdCardExpiry,
+    placeholdCardOwner,
+    placeholdCvv,
+  } = placeholdDescription;
+
     return (
       <div>
         <form onSubmit={checkDataLength}>
@@ -60,7 +61,7 @@ const Form = (props) => {
               <Input
                 id="number-card"
                 type="number"
-                placeholder="#### #### #### ####"
+                placeholder={ placeholdNumberCard }
                 name="cardNumber"
                 onChange={handleChange}
                 value={cardNumber}
@@ -75,7 +76,7 @@ const Form = (props) => {
               <Input
                 id="card-expiry"
                 type="number"
-                placeholder="ММ / РР"
+                placeholder={ placeholdCardExpiry }
                 name="cardExpiry"
                 onChange={handleChange}
                 value={cardExpiry}
@@ -88,6 +89,7 @@ const Form = (props) => {
           {showSuccessfulPayment && (
             <div className="successfulPayment">
               <SuccessfulPay />
+              
             </div>
           )}
           
@@ -105,7 +107,7 @@ const Form = (props) => {
               <Input
                 id="card-owner"
                 type="text"
-                placeholder="CARDHOLDER NAME"
+                placeholder={ placeholdCardOwner }
                 name="cardOwner"
                 onChange={handleChange}
                 value={cardOwner}
@@ -128,7 +130,7 @@ const Form = (props) => {
               <Input
                 id="cvv"
                 type="password"
-                placeholder="XXX"
+                placeholder={ placeholdCvv }
                 name="cvv"
                 onChange={handleChange}
                 value={cvv}
