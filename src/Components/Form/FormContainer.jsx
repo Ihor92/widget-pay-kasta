@@ -15,7 +15,6 @@ const findThisMonth = findToday.getMonth();
 let lasNumbersYear = findThisYear.toString().substring(2);
 let corectMonth = findThisMonth < 9 ? '0' + findThisMonth : findThisMonth;
 
-
 export default class FormContainer extends Component{
   constructor(props) {
     super(props);
@@ -27,9 +26,9 @@ export default class FormContainer extends Component{
       showError: false,
       buttonIsDisabled: true,
       incorrectDate: false,
+      showSuccessfulPayment: false,
       timer: 600,
       timeLeft: null,
-      showSuccessfulPayment: false
     }
   }
   componentDidMount() {
@@ -123,32 +122,20 @@ export default class FormContainer extends Component{
   }
 
   render() {
-    const {
-      buttonIsDisabled,
-      showError,
-      incorrectDate,
-      showSuccessfulPayment,
-      timer,
-      cardNumber,
-      cardExpiry,
-      cardOwner,
-      cvv
-    } = this.state;
-
     const { sumToPay } = this.props;
 
     return (
       <Form
-        buttonIsDisabled={buttonIsDisabled}
-        showError={showError}
-        incorrectDate={incorrectDate}
-        timer={timer}
-        cardNumber={cardNumber}
-        cardExpiry={cardExpiry}
-        cardOwner={cardOwner}
-        cvv={cvv}
+        buttonIsDisabled={this.state.buttonIsDisabled}
+        showError={this.state.showError}
+        incorrectDate={this.state.incorrectDate}
+        timer={this.state.timer}
+        cardNumber={this.state.cardNumber}
+        cardExpiry={this.state.cardExpiry}
+        cardOwner={this.state.cardOwner}
+        cvv={this.state.cvv}
         sumToPay={sumToPay}
-        showSuccessfulPayment={showSuccessfulPayment}
+        showSuccessfulPayment={this.state.showSuccessfulPayment}
         checkDataLength={this.checkDataLength}
         handleChange={this.handleChange}
       />
