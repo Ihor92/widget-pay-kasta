@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/widget-pay-kasta/precache-manifest.6bb5bb4a0c378c89fa71a52b4d5b8a33.js"
+  "/widget-pay-kasta/precache-manifest.650f1486692bbf8831b389c37b70a637.js"
 );
 
 self.addEventListener('message', (event) => {

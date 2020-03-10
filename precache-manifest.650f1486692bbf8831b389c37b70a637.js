@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8fd86a68ee452dc601a098cee2e2e6a1",
+    "revision": "957983ceea2fd43fe769172ded2fe2f0",
     "url": "/widget-pay-kasta/index.html"
   },
   {
-    "revision": "5709eb67cacff5113cdf",
+    "revision": "c5c9a9ff8d0d8440b723",
     "url": "/widget-pay-kasta/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "c3a2c760540570b692d2",
-    "url": "/widget-pay-kasta/static/css/main.798394a4.chunk.css"
+    "revision": "7994c21d9ed6e168752c",
+    "url": "/widget-pay-kasta/static/css/main.c988b197.chunk.css"
   },
   {
-    "revision": "5709eb67cacff5113cdf",
-    "url": "/widget-pay-kasta/static/js/2.15d0b620.chunk.js"
+    "revision": "c5c9a9ff8d0d8440b723",
+    "url": "/widget-pay-kasta/static/js/2.b9bcd373.chunk.js"
   },
   {
     "revision": "076350a21fcbc96beacccfb381d0deff",
-    "url": "/widget-pay-kasta/static/js/2.15d0b620.chunk.js.LICENSE.txt"
+    "url": "/widget-pay-kasta/static/js/2.b9bcd373.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c3a2c760540570b692d2",
-    "url": "/widget-pay-kasta/static/js/main.517de485.chunk.js"
+    "revision": "7994c21d9ed6e168752c",
+    "url": "/widget-pay-kasta/static/js/main.4ac95919.chunk.js"
   },
   {
     "revision": "76bd596f69512ec4890b",
@@ -34,5 +34,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "59de4166ca4de1c7b18ee26c53ff5959",
     "url": "/widget-pay-kasta/static/media/question.59de4166.svg"
+  },
+  {
+    "revision": "cdf8c5220511b507e6b9a6994e7e95e3",
+    "url": "/widget-pay-kasta/static/media/successful-payment.cdf8c522.svg"
   }
 ]);

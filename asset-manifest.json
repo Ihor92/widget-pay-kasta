@@ -1,27 +1,28 @@
 {
   "files": {
-    "main.css": "/widget-pay-kasta/static/css/main.798394a4.chunk.css",
-    "main.js": "/widget-pay-kasta/static/js/main.517de485.chunk.js",
-    "main.js.map": "/widget-pay-kasta/static/js/main.517de485.chunk.js.map",
+    "main.css": "/widget-pay-kasta/static/css/main.c988b197.chunk.css",
+    "main.js": "/widget-pay-kasta/static/js/main.4ac95919.chunk.js",
+    "main.js.map": "/widget-pay-kasta/static/js/main.4ac95919.chunk.js.map",
     "runtime-main.js": "/widget-pay-kasta/static/js/runtime-main.cd73a78c.js",
     "runtime-main.js.map": "/widget-pay-kasta/static/js/runtime-main.cd73a78c.js.map",
     "static/css/2.de424728.chunk.css": "/widget-pay-kasta/static/css/2.de424728.chunk.css",
-    "static/js/2.15d0b620.chunk.js": "/widget-pay-kasta/static/js/2.15d0b620.chunk.js",
-    "static/js/2.15d0b620.chunk.js.map": "/widget-pay-kasta/static/js/2.15d0b620.chunk.js.map",
+    "static/js/2.b9bcd373.chunk.js": "/widget-pay-kasta/static/js/2.b9bcd373.chunk.js",
+    "static/js/2.b9bcd373.chunk.js.map": "/widget-pay-kasta/static/js/2.b9bcd373.chunk.js.map",
     "index.html": "/widget-pay-kasta/index.html",
-    "precache-manifest.6bb5bb4a0c378c89fa71a52b4d5b8a33.js": "/widget-pay-kasta/precache-manifest.6bb5bb4a0c378c89fa71a52b4d5b8a33.js",
+    "precache-manifest.650f1486692bbf8831b389c37b70a637.js": "/widget-pay-kasta/precache-manifest.650f1486692bbf8831b389c37b70a637.js",
     "service-worker.js": "/widget-pay-kasta/service-worker.js",
     "static/css/2.de424728.chunk.css.map": "/widget-pay-kasta/static/css/2.de424728.chunk.css.map",
-    "static/css/main.798394a4.chunk.css.map": "/widget-pay-kasta/static/css/main.798394a4.chunk.css.map",
-    "static/js/2.15d0b620.chunk.js.LICENSE.txt": "/widget-pay-kasta/static/js/2.15d0b620.chunk.js.LICENSE.txt",
+    "static/css/main.c988b197.chunk.css.map": "/widget-pay-kasta/static/css/main.c988b197.chunk.css.map",
+    "static/js/2.b9bcd373.chunk.js.LICENSE.txt": "/widget-pay-kasta/static/js/2.b9bcd373.chunk.js.LICENSE.txt",
     "static/media/mk-logo.svg": "/widget-pay-kasta/static/media/mk-logo.ceeec732.svg",
-    "static/media/question.svg": "/widget-pay-kasta/static/media/question.59de4166.svg"
+    "static/media/question.svg": "/widget-pay-kasta/static/media/question.59de4166.svg",
+    "static/media/successful-payment.svg": "/widget-pay-kasta/static/media/successful-payment.cdf8c522.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cd73a78c.js",
     "static/css/2.de424728.chunk.css",
-    "static/js/2.15d0b620.chunk.js",
-    "static/css/main.798394a4.chunk.css",
-    "static/js/main.517de485.chunk.js"
+    "static/js/2.b9bcd373.chunk.js",
+    "static/css/main.c988b197.chunk.css",
+    "static/js/main.4ac95919.chunk.js"
   ]
 }
