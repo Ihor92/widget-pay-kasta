@@ -34,13 +34,20 @@
   transition: all 0.5s ease-in-out;
   transform: translateY(0);
 
-  animation: showEnterName 1.5s;
+  animation: showEnterName 5s;
   animation-iteration-count: 1;
 }
 
 @keyframes showEnterName {
-  from {transform: translateY(-40px);}
-  to {transform: translateY(0);}
+  0% {transform: translateY(-40px);}
+  20% {transform: translateY(0);}
+  90% {transform: translateY(0);}
+  100% {transform: translateY(-40px);}
+}
+
+.infoCard .inputError {
+  border: 1px solid red;
+  transition: .5s;
 }
 
 .payment {

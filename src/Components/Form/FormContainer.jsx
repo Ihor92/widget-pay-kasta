@@ -15,21 +15,30 @@ const findThisMonth = findToday.getMonth();
 let lasNumbersYear = findThisYear.toString().substring(2);
 let corectMonth = findThisMonth < 9 ? '0' + findThisMonth : findThisMonth;
 
+
 export default class FormContainer extends Component{
   constructor(props) {
     super(props);
     this.state = {
+      // data card
       cardNumber: '',
       cardExpiry: '',
       cardOwner: '',
       cvv: '',
-      showError: false,
+      
+      // show errors
+      showErrorCardNamber: false,
+      showErrorCardExpiry: false,
+      showErrorCardOwner: false,
+      showErrorCvv: false,
+        
       buttonIsDisabled: true,
       showSuccessfulPayment: false,
       timer: 600,
       timeLeft: null,
     }
   }
+
   componentDidMount() {
     this.setTimerId(); 
   }
@@ -60,7 +69,7 @@ export default class FormContainer extends Component{
 
   handleChange = (event) => {
     const target = event.target;
-    const value = target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     if (value.length <= validDataLength[name]) {
@@ -85,51 +94,68 @@ export default class FormContainer extends Component{
     const { cardExpiry, cvv, cardNumber, cardOwner } = this.state;
 
     const cardNumberLength = cardNumber.length === validDataLength.cardNumber;
-    const cardExpiryLength = cardExpiry.length === validDataLength.cardExpiry;
+    const cardExpiryLength = cardExpiry.length === validDataLength.cardExpiry && corectMonth + lasNumbersYear <= cardExpiry;
     const cardOwnerLength = cardOwner !== '';
     const cvvLength = cvv.length === validDataLength.cvv;
 
-    if ( cardNumberLength && cardExpiryLength && cardOwnerLength && cvvLength) {
-      if (corectMonth + lasNumbersYear <= cardExpiry) {
-        this.handleSubmit();
-      } else {
-        this.setState({
-          showError: true,
-          cardExpiry: '',
-          cvv: ''
-        })
-      }
-
+    if (cardNumberLength && cardExpiryLength && cardOwnerLength && cvvLength) {
       event.preventDefault();
+      this.handleSubmit();
       
-    }  else {
+    } else if (!cardNumberLength) {
       this.setState({
-        showError: true,
+        showErrorCardNamber: true,
         cvv: '',
-      })
+      });
+      this.closeError();
+      event.preventDefault();
+
+    } else if (!cardExpiryLength) {
+      this.setState({
+        showErrorCardExpiry: true,
+        cardExpiry: '',
+        cvv: '',
+      });
+      this.closeError();
+      event.preventDefault();
+
+    } else if (!cardOwnerLength) {
+      this.setState({
+        showErrorCardOwner: true,
+        cvv: '',
+      });
+      this.closeError();
+      event.preventDefault();
+
+    } else if (!cvvLength) {
+      this.setState({
+        showErrorCvv: true,
+        cvv: '',
+      });
       this.closeError();
       event.preventDefault();
     }
   }
 
-  closeError = () => {
-    this.closeErrorTimer = setTimeout(() => {
-      this.setState({
-        showError: false,
-      })
-    }, 3000);
-  }
-
   handleSubmit = () => {
     const { handleCloseModal } = this.props;
-
     this.setState({
       showSuccessfulPayment: true
     })
-
     this.timerId = setTimeout(() => {
       handleCloseModal();
     }, 4000);
+  }
+
+  closeError = () => {
+    setTimeout(() => {
+      this.setState({
+        showErrorCardNamber: false,
+        showErrorCardExpiry: false,
+        showErrorCardOwner: false,
+        showErrorCvv: false,
+      })
+    }, 5000);
   }
 
   render() {
@@ -138,16 +164,19 @@ export default class FormContainer extends Component{
     return (
       <Form
         buttonIsDisabled={this.state.buttonIsDisabled}
-        showError={this.state.showError}
+        showErrorCardNamber={this.state.showErrorCardNamber}
+        showErrorCardExpiry={this.state.showErrorCardExpiry}
+        showErrorCardOwner={this.state.showErrorCardOwner}
+        showErrorCvv={this.state.showErrorCvv}
         timer={this.state.timer}
         cardNumber={this.state.cardNumber}
         cardExpiry={this.state.cardExpiry}
         cardOwner={this.state.cardOwner}
         cvv={this.state.cvv}
-        sumToPay={sumToPay}
         showSuccessfulPayment={this.state.showSuccessfulPayment}
         checkDataLength={this.checkDataLength}
         handleChange={this.handleChange}
+        sumToPay={sumToPay}
       />
     );
   }

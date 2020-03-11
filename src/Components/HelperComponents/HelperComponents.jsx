@@ -10,7 +10,6 @@ export function ShowError(props) {
   )
 }
 
-
 export function SuccessfulPay() {
   return (
     <div className="successfulPaymentPopup">

@@ -8,7 +8,8 @@ const Input = props => {
     name,
     autoComplete,
     onChange,
-    value
+    value,
+    className
   } = props;
 
   return (
@@ -20,7 +21,7 @@ const Input = props => {
       type={type}
       autoComplete={autoComplete}
       placeholder={placeholder}
-      className="form-control form-control-sm"
+      className={"form-control form-control-sm " + className}
     />
   );
 };

@@ -8,14 +8,16 @@ import {
   descriptionForInputs,
   placeholdDescription,
   showErrorMessages,
-  general,
 } from '../HelperMessages/HelperMessages';
 import './Form.css';
 
 const Form = (props) => {
   const {
     buttonIsDisabled,
-    showError,
+    showErrorCardNamber,
+    showErrorCardExpiry,
+    showErrorCardOwner,
+    showErrorCvv,
     timer,
     showSuccessfulPayment,
     sumToPay,
@@ -24,7 +26,7 @@ const Form = (props) => {
     cardNumber,
     cardExpiry,
     cardOwner,
-    cvv
+    cvv,
   } = props;
 
   let minutes = Math.floor(timer / 60);
@@ -59,15 +61,15 @@ const Form = (props) => {
               <Input
                 id="number-card"
                 type="number"
-                placeholder={ placeholdNumberCard }
+                placeholder={placeholdNumberCard}
                 name="cardNumber"
                 onChange={handleChange}
                 value={cardNumber}
                 autoComplete="off"
-                className="infoCard--number "
+                className={"infoCard--number " + (showErrorCardNamber === true ? "inputError" : '')}
               />
               <div className="wrapShowError">
-                {showError && (
+                {showErrorCardNamber && (
                   <ShowError
                     propsShowError={invalidCard}
                   />
@@ -86,9 +88,10 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardExpiry}
                 autoComplete="off"
+                className={(showErrorCardExpiry === true ? "inputError" : '')}
               />
               <div className="wrapShowError">
-                {showError && (
+                {showErrorCardExpiry && (
                   <ShowError
                     propsShowError={wrongDate}
                   />
@@ -122,9 +125,10 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardOwner}
                 autoComplete="on"
+                className={(showErrorCardOwner === true ? "inputError" : '')}
               />
               <div className="wrapShowError">
-                {showError && (
+                {showErrorCardOwner && (
                   <ShowError
                     propsShowError={ enterName }
                   />
@@ -151,9 +155,10 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cvv}
                 autoComplete="off"
+                className={(showErrorCvv === true ? "inputError" : '')}
               />
               <div className="wrapShowError">
-                {showError && (
+                {showErrorCvv && (
                   <ShowError
                     propsShowError={checkCvv}
                   />
@@ -165,7 +170,10 @@ const Form = (props) => {
           <div className="payment">
             <div className="paymentWrap">
               <div className="paymentCheckbox">
-                <input id="remember" type="checkbox" />
+                <input
+                  id="remember"
+                  type="checkbox"
+                />
                 <label className="labelCheckbox" htmlFor="remember">{ descriptionRemember }</label>
                 <img src={help} alt="Tooltip" data-tip={ rememberCard }/>
                 <ReactTooltip
@@ -180,8 +188,12 @@ const Form = (props) => {
               <button
                 type="submit"
                 className={"btn btn-danger " + (buttonIsDisabled === true ? 'buttonIsDisabled ' : '' )}
-              >{ descriptionPay } {sumToPay}</button>
-              <p className="timer">{ descriptionTimer }00:0{minutes}:{seconds < 10 ? '0' + seconds : seconds}</p>
+              >
+                {descriptionPay} {sumToPay}
+              </button>
+              <p className="timer">
+                {descriptionTimer}00:0{minutes}:{seconds < 10 ? '0' + seconds : seconds}
+              </p>
             </div>
           </div>
         </form>
