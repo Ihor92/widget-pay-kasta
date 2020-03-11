@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "42d28123843e093ea630569fb5bc2e5d",
+    "revision": "5959e744b00f497e68be651b59e64e0d",
     "url": "/widget-pay-kasta/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/widget-pay-kasta/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "5ace95f520478daf2aab",
-    "url": "/widget-pay-kasta/static/css/main.8b974212.chunk.css"
+    "revision": "5d0161c8cf21bafc7b85",
+    "url": "/widget-pay-kasta/static/css/main.5f49c607.chunk.css"
   },
   {
     "revision": "c5c9a9ff8d0d8440b723",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/widget-pay-kasta/static/js/2.b9bcd373.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5ace95f520478daf2aab",
-    "url": "/widget-pay-kasta/static/js/main.e2a56bd9.chunk.js"
+    "revision": "5d0161c8cf21bafc7b85",
+    "url": "/widget-pay-kasta/static/js/main.9ca2e837.chunk.js"
   },
   {
     "revision": "76bd596f69512ec4890b",
