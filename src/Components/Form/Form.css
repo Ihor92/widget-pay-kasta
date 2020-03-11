@@ -23,6 +23,26 @@
   color: #444;
 }
 
+.wrapShowError {
+  overflow: hidden;
+  height: 24px;
+}
+
+.showError {
+  color: rgb(255, 0, 0);
+  display: inline-block;
+  transition: all 0.5s ease-in-out;
+  transform: translateY(0);
+
+  animation: showEnterName 1.5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes showEnterName {
+  from {transform: translateY(-40px);}
+  to {transform: translateY(0);}
+}
+
 .payment {
   border-top: 1px dashed #3333333d;
   margin-top: 30px;

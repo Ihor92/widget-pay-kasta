@@ -25,7 +25,6 @@ export default class FormContainer extends Component{
       cvv: '',
       showError: false,
       buttonIsDisabled: true,
-      incorrectDate: false,
       showSuccessfulPayment: false,
       timer: 600,
       timeLeft: null,
@@ -95,7 +94,7 @@ export default class FormContainer extends Component{
         this.handleSubmit();
       } else {
         this.setState({
-          incorrectDate: true,
+          showError: true,
           cardExpiry: '',
           cvv: ''
         })
@@ -106,10 +105,19 @@ export default class FormContainer extends Component{
     }  else {
       this.setState({
         showError: true,
-        cvv: ''
+        cvv: '',
       })
+      this.closeError();
       event.preventDefault();
     }
+  }
+
+  closeError = () => {
+    this.closeErrorTimer = setTimeout(() => {
+      this.setState({
+        showError: false,
+      })
+    }, 3000);
   }
 
   handleSubmit = () => {
@@ -120,7 +128,7 @@ export default class FormContainer extends Component{
     })
 
     this.timerId = setTimeout(() => {
-      handleCloseModal() ;
+      handleCloseModal();
     }, 4000);
   }
 
@@ -131,7 +139,6 @@ export default class FormContainer extends Component{
       <Form
         buttonIsDisabled={this.state.buttonIsDisabled}
         showError={this.state.showError}
-        incorrectDate={this.state.incorrectDate}
         timer={this.state.timer}
         cardNumber={this.state.cardNumber}
         cardExpiry={this.state.cardExpiry}

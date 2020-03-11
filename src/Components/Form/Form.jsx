@@ -1,17 +1,14 @@
 import React from 'react';
 import Input from '../Input/Input';
 import ReactTooltip from 'react-tooltip'
+import { ShowError, SuccessfulPay } from '../HelperComponents/HelperComponents';
 import help from './question.svg'
-
 import {
-  SuccessfulPay,
-  InvalidCard,
-  WrongDate,
-  EnterName,
-  CheckCvv,
   tooltipMessages,
   descriptionForInputs,
-  placeholdDescription
+  placeholdDescription,
+  showErrorMessages,
+  general,
 } from '../HelperMessages/HelperMessages';
 import './Form.css';
 
@@ -19,7 +16,6 @@ const Form = (props) => {
   const {
     buttonIsDisabled,
     showError,
-    incorrectDate,
     timer,
     showSuccessfulPayment,
     sumToPay,
@@ -31,8 +27,8 @@ const Form = (props) => {
     cvv
   } = props;
 
-    let minutes = Math.floor(timer / 60);
-    let seconds = timer % 60;
+  let minutes = Math.floor(timer / 60);
+  let seconds = timer % 60;
 
   const { cardOwnerTooltip, cvvTooltip, rememberCard } = tooltipMessages;
   const {
@@ -52,6 +48,8 @@ const Form = (props) => {
     placeholdCvv,
   } = placeholdDescription;
 
+  const { invalidCard, wrongDate, enterName, checkCvv, } = showErrorMessages;
+
     return (
       <div>
         <form onSubmit={checkDataLength}>
@@ -68,7 +66,14 @@ const Form = (props) => {
                 autoComplete="off"
                 className="infoCard--number "
               />
-              {showError && (<InvalidCard />)}
+              <div className="wrapShowError">
+                {showError && (
+                  <ShowError
+                    propsShowError={invalidCard}
+                  />
+                )}
+              </div>
+             
             </div>
 
             <div className="inputCardExpiry">
@@ -82,14 +87,19 @@ const Form = (props) => {
                 value={cardExpiry}
                 autoComplete="off"
               />
-              {showError && (<WrongDate />) || incorrectDate && (<WrongDate />)}
+              <div className="wrapShowError">
+                {showError && (
+                  <ShowError
+                    propsShowError={wrongDate}
+                  />
+                )}
+              </div>
             </div>
           </div>
 
           {showSuccessfulPayment && (
             <div className="successfulPayment">
               <SuccessfulPay />
-              
             </div>
           )}
           
@@ -113,7 +123,13 @@ const Form = (props) => {
                 value={cardOwner}
                 autoComplete="on"
               />
-              {showError && (<EnterName />)}
+              <div className="wrapShowError">
+                {showError && (
+                  <ShowError
+                    propsShowError={ enterName }
+                  />
+                )}
+              </div>
             </div>
 
             <div className="inputCvv">
@@ -136,7 +152,13 @@ const Form = (props) => {
                 value={cvv}
                 autoComplete="off"
               />
-              {showError && (<CheckCvv />)}
+              <div className="wrapShowError">
+                {showError && (
+                  <ShowError
+                    propsShowError={checkCvv}
+                  />
+                )}
+              </div>
             </div>
           </div>
           
