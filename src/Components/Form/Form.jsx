@@ -66,7 +66,7 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardNumber}
                 autoComplete="off"
-                className={"infoCard--number " + (showErrorCardNamber === true ? "inputError" : '')}
+                className={"infoCard--number " + (showErrorCardNamber === true ? 'inputError' : '')}
               />
               <div className="wrapInputError">
                 {showErrorCardNamber && (
@@ -75,7 +75,6 @@ const Form = (props) => {
                   />
                 )}
               </div>
-             
             </div>
 
             <div className="inputCardExpiry">
@@ -88,7 +87,7 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardExpiry}
                 autoComplete="off"
-                className={(showErrorCardExpiry === true ? "inputError" : '')}
+                className={(showErrorCardExpiry === true ? 'inputError' : '')}
               />
               <div className="wrapInputError">
                 {showErrorCardExpiry && (
@@ -119,7 +118,7 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardOwner}
                 autoComplete="on"
-                className={(showErrorCardOwner === true ? "inputError" : '')}
+                className={(showErrorCardOwner === true ? 'inputError' : '')}
               />
               <div className="wrapInputError">
                 {showErrorCardOwner && (
@@ -149,7 +148,7 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cvv}
                 autoComplete="off"
-                className={(showErrorCvv === true ? "inputError" : '')}
+                className={(showErrorCvv === true ? 'inputError' : '')}
               />
               <div className="wrapInputError">
                 {showErrorCvv && (
