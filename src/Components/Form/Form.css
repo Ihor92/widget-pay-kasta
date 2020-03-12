@@ -74,8 +74,10 @@
   padding-right: 5px;
 }
 
-.buttonIsDisabled {
+.btn-danger.buttonIsDisabled {
   pointer-events: none;
+  background-color: #985151;
+  border-color: #985151;
 }
 
 .payment .btn {
