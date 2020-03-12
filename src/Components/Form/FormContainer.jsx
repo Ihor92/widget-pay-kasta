@@ -144,7 +144,7 @@ export default class FormContainer extends Component{
     })
     this.timerId = setTimeout(() => {
       handleCloseModal();
-    }, 4000);
+    }, 2000);
   }
 
   closeError = () => {

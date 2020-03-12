@@ -100,12 +100,6 @@ const Form = (props) => {
             </div>
           </div>
 
-          {showSuccessfulPayment && (
-            <div className="successfulPayment">
-              <SuccessfulPay />
-            </div>
-          )}
-          
           <div className="infoCard">
             <div className="inputCardOwner">
               <label className="label" htmlFor="card-owner">{ descriptionCardOwner }</label>
@@ -197,6 +191,13 @@ const Form = (props) => {
             </div>
           </div>
         </form>
+
+        {showSuccessfulPayment && (
+          <div className="successfulPayment">
+            <SuccessfulPay />
+          </div>
+        )}
+        
       </div>
     );
 }
