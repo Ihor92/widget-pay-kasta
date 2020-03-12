@@ -32,7 +32,7 @@ input::-webkit-inner-spin-button {
   color: #444;
 }
 
-.wrapShowError {
+.wrapInputError {
   overflow: hidden;
   height: 24px;
 }

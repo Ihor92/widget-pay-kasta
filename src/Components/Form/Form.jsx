@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from '../Input/Input';
 import ReactTooltip from 'react-tooltip'
-import { ShowError, SuccessfulPay } from '../HelperComponents/HelperComponents';
+import { InputError, SuccessfulPay } from '../HelperComponents/HelperComponents';
 import help from '../../images/question.svg'
 import {
   tooltipMessages,
@@ -68,10 +68,10 @@ const Form = (props) => {
                 autoComplete="off"
                 className={"infoCard--number " + (showErrorCardNamber === true ? "inputError" : '')}
               />
-              <div className="wrapShowError">
+              <div className="wrapInputError">
                 {showErrorCardNamber && (
-                  <ShowError
-                    propsShowError={invalidCard}
+                  <InputError
+                    propsInputError={invalidCard}
                   />
                 )}
               </div>
@@ -90,10 +90,10 @@ const Form = (props) => {
                 autoComplete="off"
                 className={(showErrorCardExpiry === true ? "inputError" : '')}
               />
-              <div className="wrapShowError">
+              <div className="wrapInputError">
                 {showErrorCardExpiry && (
-                  <ShowError
-                    propsShowError={wrongDate}
+                  <InputError
+                    propsInputError={wrongDate}
                   />
                 )}
               </div>
@@ -121,10 +121,10 @@ const Form = (props) => {
                 autoComplete="on"
                 className={(showErrorCardOwner === true ? "inputError" : '')}
               />
-              <div className="wrapShowError">
+              <div className="wrapInputError">
                 {showErrorCardOwner && (
-                  <ShowError
-                    propsShowError={ enterName }
+                  <InputError
+                    propsInputError={ enterName }
                   />
                 )}
               </div>
@@ -151,10 +151,10 @@ const Form = (props) => {
                 autoComplete="off"
                 className={(showErrorCvv === true ? "inputError" : '')}
               />
-              <div className="wrapShowError">
+              <div className="wrapInputError">
                 {showErrorCvv && (
-                  <ShowError
-                    propsShowError={checkCvv}
+                  <InputError
+                    propsInputError={checkCvv}
                   />
                 )}
               </div>

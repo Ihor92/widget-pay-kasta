@@ -2,10 +2,10 @@ import React from 'react';
 import successful from '../../images/successful-payment.svg';
 import { general } from '../HelperMessages/HelperMessages';
 
-export function ShowError(props) {
+export function InputError(props) {
   return (
     <span className="showError">
-      {props.propsShowError}
+      {props.propsInputError}
     </span>
   )
 }
