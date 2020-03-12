@@ -1,7 +1,7 @@
 import React from 'react';
 import Animation from '../Animation/Animation';
 import FormContainer from '../../Form';
-import logo from '../../../mk-logo.svg';
+import logo from '../../../images/mk-logo.svg';
 
 
 import './Modal.css';

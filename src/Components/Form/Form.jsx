@@ -2,7 +2,7 @@ import React from 'react';
 import Input from '../Input/Input';
 import ReactTooltip from 'react-tooltip'
 import { ShowError, SuccessfulPay } from '../HelperComponents/HelperComponents';
-import help from './question.svg'
+import help from '../../images/question.svg'
 import {
   tooltipMessages,
   descriptionForInputs,

@@ -1,5 +1,5 @@
 import React from 'react';
-import successful from '../Form/successful-payment.svg';
+import successful from '../../images/successful-payment.svg';
 import { general } from '../HelperMessages/HelperMessages';
 
 export function ShowError(props) {
