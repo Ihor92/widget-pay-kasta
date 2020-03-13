@@ -4,14 +4,14 @@ export const tooltipMessages = {
   rememberCard: "Запам'ятати картку, <br /> щоб в майбутньому <br /> не витрачати час.",
 };
 
-export const descriptionForInputs = {
-  descriptionNumberCard: "Номер карти",
-  descriptionCardExpiry: "Термін дії",
-  descriptionCardOwner: "Власник карти",
-  descriptionCvv: "CVV",
-  descriptionRemember: "Запам'ятати цю картку",
-  descriptionPay: "Оплатити",
-  descriptionTimer: "На виконання платежу ",
+export const descripForInputs = {
+  descripNumberCard: "Номер карти",
+  descripCardExpiry: "Термін дії",
+  descripCardOwner: "Власник карти",
+  descripCvv: "CVV",
+  descripRemember: "Запам'ятати цю картку",
+  descripPay: "Оплатити",
+  descripTimer: "На виконання платежу ",
 }
 
 export const placeholdDescription = {

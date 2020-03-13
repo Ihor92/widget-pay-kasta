@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import './Form.css';
 import Form from './Form';
 
-const validDataLength = {
-  cardNumber: 16,
-  cardExpiry: 4,
-  cvv: 3,
-  cardOwner: 40,
-}
+// const validDataLength = {
+//   cardNumber: 16,
+//   cardExpiry: 4,
+//   cvv: 3,
+//   cardOwner: 40,
+// }
 
 const findToday = new Date();
 const findThisYear = findToday.getFullYear();
@@ -20,17 +20,19 @@ export default class FormContainer extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      // data card
-      cardNumber: '',
-      cardExpiry: '',
-      cardOwner: '',
-      cvv: '',
+      fields: {
+        cardNumber: '',
+        cardExpiry: '',
+        cardOwner: '',
+        cvv: '',
+      },
       
-      // show errors
-      showErrorCardNamber: false,
-      showErrorCardExpiry: false,
-      showErrorCardOwner: false,
-      showErrorCvv: false,
+      showError: {
+        showErrorCardNamber: false,
+        showErrorCardExpiry: false,
+        showErrorCardOwner: false,
+        showErrorCvv: false,
+      },
         
       buttonIsDisabled: true,
       showSuccessfulPayment: false,
@@ -67,21 +69,22 @@ export default class FormContainer extends Component{
     }, 1000)
   }
 
-  handleChange = (event) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    if (value.length <= validDataLength[name]) {
-      this.setState({
-        [name]: value,
-      })
-    }
+  handleChange = (e) => {
+    const name = e.target.name;
+    
+    this.setState({
+      ...this.state, fields: {
+        ...this.state.fields,
+        [name]: e.target.value,
+      }
+    })
+    
+    this.invalidData();
     this.checkAllInputs();
   }
 
   checkAllInputs = () => {
-    const { cardNumber, cardExpiry, cardOwner, cvv } = this.state;
+    const { cardNumber, cardExpiry, cardOwner, cvv } = this.state.fields;
 
     if (cardNumber !== '' && cardExpiry !== '' && cardOwner !== '' && cvv !== '') {
       this.setState({
@@ -90,51 +93,16 @@ export default class FormContainer extends Component{
     }
   }
 
-  checkDataLength = (event) => {
-    const { cardExpiry, cvv, cardNumber, cardOwner } = this.state;
+  invalidData = (event) => { // onSubmit
+    const { cardExpiry, cvv, cardNumber, cardOwner } = this.state.fields;
 
-    const cardNumberLength = cardNumber.length === validDataLength.cardNumber;
-    const cardExpiryLength = cardExpiry.length === validDataLength.cardExpiry && corectMonth + lasNumbersYear <= cardExpiry;
-    const cardOwnerLength = cardOwner !== '';
-    const cvvLength = cvv.length === validDataLength.cvv;
-
-    if (cardNumberLength && cardExpiryLength && cardOwnerLength && cvvLength) {
-      event.preventDefault();
-      this.handleSubmit();
-      
-    } else if (!cardNumberLength) {
-      this.setState({
-        showErrorCardNamber: true,
-        cvv: '',
-      });
-      this.closeError();
-      event.preventDefault();
-
-    } else if (!cardExpiryLength) {
-      this.setState({
-        showErrorCardExpiry: true,
-        cardExpiry: '',
-        cvv: '',
-      });
-      this.closeError();
-      event.preventDefault();
-
-    } else if (!cardOwnerLength) {
-      this.setState({
-        showErrorCardOwner: true,
-        cvv: '',
-      });
-      this.closeError();
-      event.preventDefault();
-
-    } else if (!cvvLength) {
-      this.setState({
-        showErrorCvv: true,
-        cvv: '',
-      });
-      this.closeError();
-      event.preventDefault();
-    }
+    let separator = cardExpiry.split(" ");
+    let removeSlash = separator.splice(1, 1);
+    
+    let cardExpiryToNum = separator.join();
+    console.log(cardExpiryToNum.length);
+    
+    // console.log(removeSlash);
   }
 
   handleSubmit = () => {
@@ -147,16 +115,16 @@ export default class FormContainer extends Component{
     }, 2000);
   }
 
-  closeError = () => {
-    setTimeout(() => {
-      this.setState({
-        showErrorCardNamber: false,
-        showErrorCardExpiry: false,
-        showErrorCardOwner: false,
-        showErrorCvv: false,
-      })
-    }, 5000);
-  }
+  // closeError = () => {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       showErrorCardNamber: false,
+  //       showErrorCardExpiry: false,
+  //       showErrorCardOwner: false,
+  //       showErrorCvv: false,
+  //     })
+  //   }, 5000);
+  // }
 
   render() {
     const { sumToPay } = this.props;
@@ -164,17 +132,11 @@ export default class FormContainer extends Component{
     return (
       <Form
         buttonIsDisabled={this.state.buttonIsDisabled}
-        showErrorCardNamber={this.state.showErrorCardNamber}
-        showErrorCardExpiry={this.state.showErrorCardExpiry}
-        showErrorCardOwner={this.state.showErrorCardOwner}
-        showErrorCvv={this.state.showErrorCvv}
+        showError={this.state.showError}
+        fields={this.state.fields}
         timer={this.state.timer}
-        cardNumber={this.state.cardNumber}
-        cardExpiry={this.state.cardExpiry}
-        cardOwner={this.state.cardOwner}
-        cvv={this.state.cvv}
         showSuccessfulPayment={this.state.showSuccessfulPayment}
-        checkDataLength={this.checkDataLength}
+        handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         sumToPay={sumToPay}
       />

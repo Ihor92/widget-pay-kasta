@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from 'react-tooltip';
+import MaskedInput from 'react-text-mask';
 import { InputError, SuccessfulPay } from '../HelperComponents/HelperComponents';
 import help from '../../images/question.svg'
 import {
   tooltipMessages,
-  descriptionForInputs,
+  descripForInputs,
   placeholdDescription,
   showErrorMessages,
 } from '../HelperMessages/HelperMessages';
@@ -13,19 +14,13 @@ import './Form.css';
 const Form = (props) => {
   const {
     buttonIsDisabled,
-    showErrorCardNamber,
-    showErrorCardExpiry,
-    showErrorCardOwner,
-    showErrorCvv,
+    showError,
+    fields,
     timer,
     showSuccessfulPayment,
     sumToPay,
-    checkDataLength,
+    handleSubmit,
     handleChange,
-    cardNumber,
-    cardExpiry,
-    cardOwner,
-    cvv,
   } = props;
 
   let minutes = Math.floor(timer / 60);
@@ -33,14 +28,14 @@ const Form = (props) => {
 
   const { cardOwnerTooltip, cvvTooltip, rememberCard } = tooltipMessages;
   const {
-    descriptionNumberCard,
-    descriptionCardExpiry,
-    descriptionCardOwner,
-    descriptionCvv,
-    descriptionRemember,
-    descriptionPay,
-    descriptionTimer,
-  } = descriptionForInputs;
+    descripNumberCard,
+    descripCardExpiry,
+    descripCardOwner,
+    descripCvv,
+    descripRemember,
+    descripPay,
+    descripTimer,
+  } = descripForInputs;
   
   const {
     placeholdNumberCard,
@@ -50,16 +45,18 @@ const Form = (props) => {
   } = placeholdDescription;
 
   const { invalidCard, wrongDate, enterName, checkCvv, } = showErrorMessages;
-
+  const { showErrorCardNamber, showErrorCardExpiry, showErrorCardOwner, showErrorCvv } = showError;
+  const { cardNumber, cardExpiry, cardOwner, cvv} = fields;
     return (
       <div>
-        <form onSubmit={checkDataLength}>
+        <form onSubmit={handleSubmit}>
           <div className="infoCard">
             <div className="inputNumberCard">
-              <label className="label" htmlFor="number-card">{descriptionNumberCard}</label>
-              <input
+              <label className="label" htmlFor="number-card">{descripNumberCard}</label>
+              <MaskedInput
+                mask={[/\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/]}
+                keepCharPositions={true}
                 id="number-card"
-                type="number"
                 placeholder={placeholdNumberCard}
                 name="cardNumber"
                 onChange={handleChange}
@@ -77,10 +74,11 @@ const Form = (props) => {
             </div>
 
             <div className="inputCardExpiry">
-              <label className="label" htmlFor="card-expiry">{ descriptionCardExpiry }</label>
-              <input
+              <label className="label" htmlFor="card-expiry">{ descripCardExpiry }</label>
+              <MaskedInput
+                mask={[/\d/, /\d/, ' ', '/', ' ', /\d/, /\d/]}
+                keepCharPositions={true}
                 id="card-expiry"
-                type="number"
                 placeholder={ placeholdCardExpiry }
                 name="cardExpiry"
                 onChange={handleChange}
@@ -100,7 +98,7 @@ const Form = (props) => {
 
           <div className="infoCard">
             <div className="inputCardOwner">
-              <label className="label" htmlFor="card-owner">{ descriptionCardOwner }</label>
+              <label className="label" htmlFor="card-owner">{ descripCardOwner }</label>
               <img src={help} alt="Tooltip" data-tip={ cardOwnerTooltip }/>
               <ReactTooltip
                 type="light"
@@ -129,7 +127,7 @@ const Form = (props) => {
             </div>
 
             <div className="inputCvv">
-              <label className="label" htmlFor="cvv">{ descriptionCvv }</label>
+              <label className="label" htmlFor="cvv">{ descripCvv }</label>
 
               <img src={help} alt="Tooltip" data-tip={ cvvTooltip }/>
               <ReactTooltip
@@ -166,7 +164,7 @@ const Form = (props) => {
                   id="remember"
                   type="checkbox"
                 />
-                <label className="labelCheckbox" htmlFor="remember">{ descriptionRemember }</label>
+                <label className="labelCheckbox" htmlFor="remember">{ descripRemember }</label>
                 <img src={help} alt="Tooltip" data-tip={ rememberCard }/>
                 <ReactTooltip
                   type="light"
@@ -181,10 +179,10 @@ const Form = (props) => {
                 type="submit"
                 className={"btn btn-danger " + (buttonIsDisabled === true ? 'buttonIsDisabled ' : '' )}
               >
-                {descriptionPay} {sumToPay}
+                {descripPay} {sumToPay}
               </button>
               <p className="timer">
-                {descriptionTimer}00:0{minutes}:{seconds < 10 ? '0' + seconds : seconds}
+                {descripTimer}00:0{minutes}:{seconds < 10 ? '0' + seconds : seconds}
               </p>
             </div>
           </div>
