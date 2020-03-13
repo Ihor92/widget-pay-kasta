@@ -1,5 +1,4 @@
 import React from 'react';
-import Input from '../Input/Input';
 import ReactTooltip from 'react-tooltip'
 import { InputError, SuccessfulPay } from '../HelperComponents/HelperComponents';
 import help from '../../images/question.svg'
@@ -58,7 +57,7 @@ const Form = (props) => {
           <div className="infoCard">
             <div className="inputNumberCard">
               <label className="label" htmlFor="number-card">{descriptionNumberCard}</label>
-              <Input
+              <input
                 id="number-card"
                 type="number"
                 placeholder={placeholdNumberCard}
@@ -66,7 +65,7 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardNumber}
                 autoComplete="off"
-                className={"infoCard--number " + (showErrorCardNamber === true ? 'inputError' : '')}
+                className={"infoCard--number form-control form-control-sm " + (showErrorCardNamber === true ? 'inputError' : '')}
               />
               <div className="wrapInputError">
                 {showErrorCardNamber && (
@@ -79,7 +78,7 @@ const Form = (props) => {
 
             <div className="inputCardExpiry">
               <label className="label" htmlFor="card-expiry">{ descriptionCardExpiry }</label>
-              <Input
+              <input
                 id="card-expiry"
                 type="number"
                 placeholder={ placeholdCardExpiry }
@@ -87,7 +86,7 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardExpiry}
                 autoComplete="off"
-                className={(showErrorCardExpiry === true ? 'inputError' : '')}
+                className={"form-control form-control-sm " + (showErrorCardExpiry === true ? 'inputError' : '')}
               />
               <div className="wrapInputError">
                 {showErrorCardExpiry && (
@@ -110,7 +109,7 @@ const Form = (props) => {
                 border={true}
                 borderColor="#333"
               />
-              <Input
+              <input
                 id="card-owner"
                 type="text"
                 placeholder={ placeholdCardOwner }
@@ -118,7 +117,7 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardOwner}
                 autoComplete="on"
-                className={(showErrorCardOwner === true ? 'inputError' : '')}
+                className={"form-control form-control-sm " + (showErrorCardOwner === true ? 'inputError' : '')}
               />
               <div className="wrapInputError">
                 {showErrorCardOwner && (
@@ -140,7 +139,7 @@ const Form = (props) => {
                 border={true}
                 borderColor="#333"
               />
-              <Input
+              <input
                 id="cvv"
                 type="password"
                 placeholder={ placeholdCvv }
@@ -148,7 +147,7 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cvv}
                 autoComplete="off"
-                className={(showErrorCvv === true ? 'inputError' : '')}
+                className={"form-control form-control-sm " + (showErrorCvv === true ? 'inputError' : '')}
               />
               <div className="wrapInputError">
                 {showErrorCvv && (
