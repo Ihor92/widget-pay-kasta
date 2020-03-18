@@ -1,37 +1,31 @@
 import React, { Component } from 'react';
 import './Form.css';
 import Form from './Form';
-
-// const validDataLength = {
-//   cardNumber: 16,
-//   cardExpiry: 4,
-//   cvv: 3,
-//   cardOwner: 40,
-// }
+import { showErrorMessages } from '../HelperMessages/HelperMessages';
 
 const findToday = new Date();
 const findThisYear = findToday.getFullYear();
 const findThisMonth = findToday.getMonth();
-let lasNumbersYear = findThisYear.toString().substring(2);
+let corectYear = findThisYear.toString().substring(2);
 let corectMonth = findThisMonth < 9 ? '0' + findThisMonth : findThisMonth;
 
+const defaultState = {
+  cardNumber: '',
+  cardExpiry: '',
+  cardOwner: '',
+  cvv: '',
+}
 
-export default class FormContainer extends Component{
+export default class FormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       fields: {
-        cardNumber: '',
-        cardExpiry: '',
-        cardOwner: '',
-        cvv: '',
+        ...defaultState,
       },
       
-      showError: {
-        showErrorCardNamber: false,
-        showErrorCardExpiry: false,
-        showErrorCardOwner: false,
-        showErrorCvv: false,
+      errors: {
+        ...defaultState,
       },
         
       buttonIsDisabled: true,
@@ -73,13 +67,17 @@ export default class FormContainer extends Component{
     const name = e.target.name;
     
     this.setState({
-      ...this.state, fields: {
+      fields: {
         ...this.state.fields,
         [name]: e.target.value,
+      },
+      errors: {
+        ...this.state.errors,
+        [name]: '',
       }
     })
-    
-    this.invalidData();
+    // this.invalidCardNumber();
+    // this.invalidData();
     this.checkAllInputs();
   }
 
@@ -93,16 +91,54 @@ export default class FormContainer extends Component{
     }
   }
 
-  invalidData = (event) => { // onSubmit
-    const { cardExpiry, cvv, cardNumber, cardOwner } = this.state.fields;
+  invalidCardNumber = (event) => {
+    const {
+      fields: { cardNumber },
+      errors
+    } = this.state;
+    const { invalidCard } = showErrorMessages;
 
-    let separator = cardExpiry.split(" ");
-    let removeSlash = separator.splice(1, 1);
+    const removedSpaces = /\s*/;
+    const enteredCardNumber = cardNumber.split(removedSpaces).join('');
+    const enteredCardNumberToNum = Number(enteredCardNumber)
+    if (enteredCardNumberToNum.length < 16) {
+      this.setState({
+        errors: {
+          ...errors,
+          cardExpiry: invalidCard,
+        }
+      });
+    }
+  }
+
+  invalidData = (event) => { // onSubmit
+    const {
+      fields: { cardExpiry },
+      errors
+    } = this.state;
+    const { cardIsNotValid, wrongDate } = showErrorMessages;
+
+    const separatorCardExpiry = cardExpiry.split(" ");
+    separatorCardExpiry.splice(1, 1);
+    const cardExpiryJoin = separatorCardExpiry.join('');
+    const cardExpiryToNum = Number(cardExpiryJoin);
+    const checkTwelveMonths = Number(separatorCardExpiry[0]);
     
-    let cardExpiryToNum = separator.join();
-    console.log(cardExpiryToNum.length);
-    
-    // console.log(removeSlash);
+    if (checkTwelveMonths > 12 || cardExpiryToNum.length !== 4 ) {
+      this.setState({
+        errors: {
+          ...errors,
+          cardExpiry: wrongDate,
+        }
+      });
+    } else if (corectMonth + corectYear > cardExpiryToNum) {
+      this.setState({
+        errors: {
+          ...errors,
+          cardExpiry: cardIsNotValid,
+        }
+      });
+    }
   }
 
   handleSubmit = () => {
@@ -115,24 +151,13 @@ export default class FormContainer extends Component{
     }, 2000);
   }
 
-  // closeError = () => {
-  //   setTimeout(() => {
-  //     this.setState({
-  //       showErrorCardNamber: false,
-  //       showErrorCardExpiry: false,
-  //       showErrorCardOwner: false,
-  //       showErrorCvv: false,
-  //     })
-  //   }, 5000);
-  // }
-
   render() {
     const { sumToPay } = this.props;
 
     return (
       <Form
         buttonIsDisabled={this.state.buttonIsDisabled}
-        showError={this.state.showError}
+        errors={this.state.errors}
         fields={this.state.fields}
         timer={this.state.timer}
         showSuccessfulPayment={this.state.showSuccessfulPayment}

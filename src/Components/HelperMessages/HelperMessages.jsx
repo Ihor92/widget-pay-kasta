@@ -22,8 +22,9 @@ export const placeholdDescription = {
 }
 
 export const showErrorMessages = {
-  invalidCard: "Невірна карта",
-  wrongDate: "Невірний термін",
+  cardIsNotValid: "Термін вашої карти вийшов",
+  wrongDate: "Не корректна дата",
+  invalidCard: "Невірний номер карти",
   enterName: "Введіть ПІБ власника картки",
   checkCvv: "Перевірте cvv",
 }
