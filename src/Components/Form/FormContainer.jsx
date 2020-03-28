@@ -4,10 +4,8 @@ import Form from './Form';
 import { showErrorMessages } from '../HelperMessages/HelperMessages';
 
 const findToday = new Date();
-const findThisYear = findToday.getFullYear();
-const findThisMonth = findToday.getMonth();
-let corectYear = findThisYear.toString().substring(2);
-let corectMonth = findThisMonth < 9 ? '0' + findThisMonth : findThisMonth;
+const thisYear = findToday.getFullYear();
+const thisMonth = findToday.getMonth();
 
 const defaultState = {
   cardNumber: '',
@@ -76,12 +74,11 @@ export default class FormContainer extends Component {
         [name]: '',
       }
     })
-    // this.invalidCardNumber();
-    // this.invalidData();
-    this.checkAllInputs();
+
+    this.checkDisableButton();
   }
 
-  checkAllInputs = () => {
+  checkDisableButton = () => {
     const { cardNumber, cardExpiry, cardOwner, cvv } = this.state.fields;
 
     if (cardNumber !== '' && cardExpiry !== '' && cardOwner !== '' && cvv !== '') {
@@ -91,27 +88,26 @@ export default class FormContainer extends Component {
     }
   }
 
-  invalidCardNumber = (event) => {
-    const {
-      fields: { cardNumber },
-      errors
-    } = this.state;
+  cardExpiryError = () => {
     const { invalidCard } = showErrorMessages;
 
-    const removedSpaces = /\s*/;
-    const enteredCardNumber = cardNumber.split(removedSpaces).join('');
-    const enteredCardNumberToNum = Number(enteredCardNumber)
-    if (enteredCardNumberToNum.length < 16) {
-      this.setState({
-        errors: {
-          ...errors,
-          cardExpiry: invalidCard,
-        }
-      });
-    }
+    this.setState((state) => ({
+      errors: {
+        ...state.errors,
+        cardNumber: invalidCard,
+      }
+    }));
+    return false;
   }
 
-  invalidData = (event) => { // onSubmit
+  checkInvalidCardNumber = () => {
+    const { cardNumber } = this.state.fields;
+    const str = cardNumber;
+    console.log(str.replace(/[_/]|\s+/g, '').split('').length === 16);
+    return str.replace(/[_/]|\s+/g, '').split('').length === 16 ? true : this.cardExpiryError();
+  }
+
+  checkInvalidData = () => {
     const {
       fields: { cardExpiry },
       errors
@@ -120,35 +116,57 @@ export default class FormContainer extends Component {
 
     const separatorCardExpiry = cardExpiry.split(" ");
     separatorCardExpiry.splice(1, 1);
-    const cardExpiryJoin = separatorCardExpiry.join('');
-    const cardExpiryToNum = Number(cardExpiryJoin);
-    const checkTwelveMonths = Number(separatorCardExpiry[0]);
     
-    if (checkTwelveMonths > 12 || cardExpiryToNum.length !== 4 ) {
-      this.setState({
+    const cardExpiryJoin = separatorCardExpiry.join('');
+    const foundUnderscore = cardExpiryJoin.match('_') ? true : false;
+
+    const completeYear = '20' + separatorCardExpiry[1];
+    const userEnteredMonth = Number(separatorCardExpiry[0] - 1);
+    const userEnteredYear = Number(completeYear);
+    const userEnterDate = new Date(userEnteredYear, userEnteredMonth, 1);
+
+    const todayCorectDate = new Date(thisYear, thisMonth, 1);
+
+    if ((separatorCardExpiry[0] > '12' || foundUnderscore) || null) {
+      this.setState((state) => ({
         errors: {
-          ...errors,
+          ...state.errors,
           cardExpiry: wrongDate,
         }
-      });
-    } else if (corectMonth + corectYear > cardExpiryToNum) {
-      this.setState({
+      }));
+      return false;
+    } else if (userEnterDate < todayCorectDate) {
+      this.setState((state) => ({ 
         errors: {
-          ...errors,
+          ...state.errors,
           cardExpiry: cardIsNotValid,
         }
-      });
+      }));
+      return false;
     }
+    return true;
   }
 
-  handleSubmit = () => {
+  preValidation = () => {
+    const invalidDate = this.checkInvalidData();
+    const invalidCardNumber = this.checkInvalidCardNumber();
+    return invalidDate && invalidCardNumber;
+  };
+
+  submit = () => {
     const { handleCloseModal } = this.props;
     this.setState({
       showSuccessfulPayment: true
     })
     this.timerId = setTimeout(() => {
-      handleCloseModal();
+      // handleCloseModal();
+      console.log("submit");
     }, 2000);
+  } 
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.preValidation() && this.submit();
   }
 
   render() {
