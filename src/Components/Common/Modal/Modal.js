@@ -1,14 +1,12 @@
 import React from 'react';
 import Animation from '../Animation/Animation';
 import FormContainer from '../../Form';
+import { general } from '../../HelperMessages';
 import logo from '../../../images/mk-logo.svg';
-
 
 import './Modal.css';
 
-const sumToPay = '123 284 грн';
-const newCard = 'Нова карта';
-const typeCard = 'Visa, Mastercard';
+const {sumToPay, newCard, typeCard, toPay } = general;
 
 const Modal = ({ handleCloseModal, showModal, children }) => (
   <Animation timeout={200} show={showModal}>
@@ -22,7 +20,7 @@ const Modal = ({ handleCloseModal, showModal, children }) => (
               <img src={logo} alt="Логотип" />
 
               <div className="aboutPay">
-                <p className="toPay">До сплати</p>
+                <p className="toPay">{toPay}</p>
                 <p className="sumToPay">{sumToPay}</p>
               </div>
             </div>
