@@ -4,7 +4,7 @@ import { general } from './HelperMessages';
 
 export function InputError(props) {
   return (
-    <span className="showError">
+    <span className="form__showError">
       {props.propsInputError}
     </span>
   )
@@ -12,11 +12,11 @@ export function InputError(props) {
 
 export function SuccessfulPay() {
   return (
-    <div className="successfulPaymentPopup">
-      <p className="successfulPayment--text">
+    <div className="form__successfulPayment-popup">
+      <p className="form__successfulPayment-text">
         {general.successfulPay}
       </p>
-      <img className="successfulIcon" src={successful} alt="Icon" />
+      <img className="form__successful-icon" src={successful} alt="Icon" />
     </div>
   )
 };

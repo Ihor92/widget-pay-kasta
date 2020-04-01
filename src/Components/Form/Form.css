@@ -7,37 +7,37 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.infoCard  {
+.form__infoCard  {
   display: flex;
   justify-content: space-around;
   width: 90%;
   margin: 30px auto 0;
 }
 
-.inputNumberCard,
-.inputCardOwner {
+.form__input-numberCard,
+.form__input-cardOwner {
   width: 80%;
 }
 
-.inputCardExpiry,
-.inputCvv {
+.form__input-cardExpiry,
+.form__input-cvv{
   width: 40%;
   margin-left: 10px;
 }
 
-.label {
+.form__label {
   margin: 0 0 5px;
   padding-right: 5px;
   font-weight: 500;
   color: #444;
 }
 
-.wrapInputError {
+.from__wrap--inputError {
   overflow: hidden;
   height: 30px;
 }
 
-.showError {
+.form__showError {
   font-size: 11px;
   color: rgb(255, 0, 0);
   display: inline-block;
@@ -54,17 +54,17 @@ input::-webkit-inner-spin-button {
   100% {transform: translateY(0px);}
 }
 
-.infoCard .inputError {
+.form__infoCard .from__inputError {
   border: 1px solid red;
   transition: .5s;
 }
 
-.payment {
+.form__payment {
   border-top: 1px dashed #3333333d;
   margin-top: 30px;
 }
 
-.paymentWrap {
+.form__payment-wrap {
   width: 90%;
   margin: 0 auto;
   padding-top: 20px;
@@ -72,29 +72,29 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
 }
 
-.paymentCheckbox {
+.form__checkbox {
   margin: 0 auto;
   display: flex;
   align-items: center;
 }
 
-.labelCheckbox {
+.form__label-checkbox {
   margin: 0 0 4px 5px;
   padding-right: 5px;
 }
 
-.btn-danger.buttonIsDisabled {
+.btn-danger.form__button-isDisabled {
   pointer-events: none;
   background-color: #985151;
   border-color: #985151;
 }
 
-.payment .btn {
+.form__payment .btn {
   width: 70%;
   margin: 20px auto 10px;
 }
 
-.timer {
+.form__timer {
   margin: 0 auto;
 }
 
@@ -103,11 +103,11 @@ input::-webkit-inner-spin-button {
   to {right: -160px}
 }
 
-.successfulPaymentPopup {
+.form__successfulPayment-popup {
   display: flex;
 }
 
-.successfulPayment {
+.from__successfulPayment {
   border: 1px solid #333;
   padding: 5px 10px;
   background: #fff;
@@ -122,12 +122,12 @@ input::-webkit-inner-spin-button {
   animation-iteration-count: 1;
 }
 
-.successfulPayment--text {
+.form__successfulPayment-text {
   text-align: center;
   padding-right: 10px;
   margin: 0;
 }
 
-.successfulIcon {
+.form__successful-icon {
   width: 40px;
 }

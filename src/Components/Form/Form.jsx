@@ -48,9 +48,9 @@ const Form = (props) => {
   return (
       <div>
         <form onSubmit={handleSubmit}>
-          <div className="infoCard">
-            <div className="inputNumberCard">
-              <label className="label" htmlFor="number-card">{descripNumberCard}</label>
+          <div className="form__infoCard">
+            <div className="form__input-numberCard">
+              <label className="form__label" htmlFor="number-card">{descripNumberCard}</label>
               <MaskedInput
                 mask={[/\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/]}
                 keepCharPositions={true}
@@ -60,9 +60,9 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardNumber}
                 autoComplete="off"
-                className={"infoCard--number form-control form-control-sm " + (errors.cardNumber ? 'inputError' : '')}
+                className={"form-control form-control-sm " + (errors.cardNumber ? 'from__inputError' : '')}
               />
-              <div className="wrapInputError">
+              <div className="from__wrap--inputError">
                 {errors.cardNumber && (
                   <InputError
                     propsInputError={errors.cardNumber}
@@ -71,8 +71,8 @@ const Form = (props) => {
               </div>
             </div>
 
-            <div className="inputCardExpiry">
-              <label className="label" htmlFor="card-expiry">{ descripCardExpiry }</label>
+            <div className="form__input-cardExpiry">
+              <label className="form__label" htmlFor="card-expiry">{ descripCardExpiry }</label>
               <MaskedInput
                 mask={[/\d/, /\d/, ' ', '/', ' ', /\d/, /\d/]}
                 keepCharPositions={true}
@@ -82,9 +82,9 @@ const Form = (props) => {
                 onChange={handleChange}
                 value={cardExpiry}
                 autoComplete="off"
-                className={"form-control form-control-sm " + (errors.cardExpiry ? 'inputError' : '')}
+                className={"form-control form-control-sm " + (errors.cardExpiry ? 'from__inputError' : '')}
               />
-              <div className="wrapInputError">
+              <div className="from__wrap--inputError">
                 {errors.cardExpiry && (
                   <InputError
                     propsInputError={errors.cardExpiry}
@@ -93,10 +93,10 @@ const Form = (props) => {
               </div>
             </div>
           </div>
-
-          <div className="infoCard">
-            <div className="inputCardOwner">
-              <label className="label" htmlFor="card-owner">{ descripCardOwner }</label>
+          
+          <div className="form__infoCard">
+            <div className="form__input-cardOwner">
+              <label className="form__label" htmlFor="card-owner">{ descripCardOwner }</label>
               <img src={help} alt="Tooltip" data-tip={ cardOwnerTooltip }/>
               <ReactTooltip
                 type="light"
@@ -117,8 +117,8 @@ const Form = (props) => {
               />
               </div>
 
-            <div className="inputCvv">
-              <label className="label" htmlFor="cvv">{ descripCvv }</label>
+            <div className="form__input-cvv">
+              <label className="form__label" htmlFor="cvv">{ descripCvv }</label>
 
               <img src={help} alt="Tooltip" data-tip={ cvvTooltip }/>
               <ReactTooltip
@@ -137,19 +137,19 @@ const Form = (props) => {
                 value={cvv}
                 autoComplete="off"
                 maxLength="3"
-                className={"form-control form-control-sm "}
+                className={"form-control form-control-sm"}
               />
             </div>
           </div>
           
-          <div className="payment">
-            <div className="paymentWrap">
-              <div className="paymentCheckbox">
+          <div className="form__payment">
+            <div className="form__payment-wrap">
+              <div className="form__checkbox">
                 <input
                   id="remember"
                   type="checkbox"
                 />
-                <label className="labelCheckbox" htmlFor="remember">{ descripRemember }</label>
+                <label className="form__label-checkbox" htmlFor="remember">{ descripRemember }</label>
                 <img src={help} alt="Tooltip" data-tip={ rememberCard }/>
                 <ReactTooltip
                   type="light"
@@ -162,11 +162,11 @@ const Form = (props) => {
 
               <button
                 type="submit"
-                className={"btn btn-danger " + (buttonIsDisabled === true ? 'buttonIsDisabled ' : '' )}
+                className={"btn btn-danger " + (buttonIsDisabled === true ? 'form__button-isDisabled' : '' )}
               >
                 {descripPay} {sumToPay}
               </button>
-              <p className="timer">
+              <p className="form__timer">
                 {descripTimer}00:0{minutes}:{seconds < 10 ? '0' + seconds : seconds}
               </p>
             </div>
@@ -174,7 +174,7 @@ const Form = (props) => {
         </form>
 
         {showSuccessfulPayment && (
-          <div className="successfulPayment">
+          <div className="from__successfulPayment">
             <SuccessfulPay />
           </div>
         )}
