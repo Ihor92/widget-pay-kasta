@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import MaskedInput from 'react-text-mask';
-import { InputError, SuccessfulPay } from '../HelperComponents/HelperComponents';
+import { InputError, SuccessfulPay } from '../HelperComponents';
 import help from '../../images/question.svg'
 import {
   tooltipMessages,
   descripForInputs,
   placeholdDescription,
-} from '../HelperMessages/HelperMessages';
+} from '../HelperMessages';
 import './Form.css';
 
 const Form = (props) => {

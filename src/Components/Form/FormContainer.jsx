@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Form.css';
 import Form from './Form';
 import { validateCardNumber, validateDateTwelveMonths, validateCurrentDate, validateCardDateLength} from '../../utils';
-import { showErrorMessages } from '../HelperMessages/HelperMessages';
+import { showErrorMessages } from '../HelperMessages';
 
 const defaultState = {
   cardNumber: '',
