@@ -4,14 +4,14 @@ export const tooltipMessages = {
   rememberCard: "Запам'ятати картку, <br /> щоб в майбутньому <br /> не витрачати час.",
 };
 
-export const descriptionForInputs = {
-  descriptionNumberCard: "Номер карти",
-  descriptionCardExpiry: "Термін дії",
-  descriptionCardOwner: "Власник карти",
-  descriptionCvv: "CVV",
-  descriptionRemember: "Запам'ятати цю картку",
-  descriptionPay: "Оплатити",
-  descriptionTimer: "На виконання платежу ",
+export const descripForInputs = {
+  descripNumberCard: "Номер карти",
+  descripCardExpiry: "Термін дії",
+  descripCardOwner: "Власник карти",
+  descripCvv: "CVV",
+  descripRemember: "Запам'ятати цю картку",
+  descripPay: "Оплатити",
+  descripTimer: "На виконання платежу ",
 }
 
 export const placeholdDescription = {
@@ -22,8 +22,9 @@ export const placeholdDescription = {
 }
 
 export const showErrorMessages = {
-  invalidCard: "Невірна карта",
-  wrongDate: "Невірний термін",
+  cardIsNotValid: "Термін вашої карти вийшов",
+  wrongDate: "Не корректна дата",
+  invalidCard: "Не корректный номер карти",
   enterName: "Введіть ПІБ власника картки",
   checkCvv: "Перевірте cvv",
 }

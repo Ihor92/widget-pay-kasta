@@ -34,24 +34,24 @@ input::-webkit-inner-spin-button {
 
 .wrapInputError {
   overflow: hidden;
-  height: 24px;
+  height: 30px;
 }
 
 .showError {
+  font-size: 11px;
   color: rgb(255, 0, 0);
   display: inline-block;
   transition: all 0.5s ease-in-out;
-  transform: translateY(0);
-
-  animation: showEnterName 5s;
+  transform: translateY(0px);
+  
+  animation: showEnterName 1.5s;
   animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 @keyframes showEnterName {
   0% {transform: translateY(-40px);}
-  20% {transform: translateY(0);}
-  90% {transform: translateY(0);}
-  100% {transform: translateY(-40px);}
+  100% {transform: translateY(0px);}
 }
 
 .infoCard .inputError {

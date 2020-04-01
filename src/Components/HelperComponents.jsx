@@ -1,6 +1,6 @@
 import React from 'react';
-import successful from '../../images/successful-payment.svg';
-import { general } from '../HelperMessages/HelperMessages';
+import successful from '../images/successful-payment.svg';
+import { general } from './HelperMessages';
 
 export function InputError(props) {
   return (

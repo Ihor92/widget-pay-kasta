@@ -1,36 +1,27 @@
 import React, { Component } from 'react';
 import './Form.css';
 import Form from './Form';
+import { validateCardNumber, validateDateTwelveMonths, validateCurrentDate, validateCardDateLength} from '../../utils';
+import { showErrorMessages } from '../HelperMessages';
 
-const validDataLength = {
-  cardNumber: 16,
-  cardExpiry: 4,
-  cvv: 3,
-  cardOwner: 40,
+const defaultState = {
+  cardNumber: '',
+  cardExpiry: '',
+  cardOwner: '',
+  cvv: '',
 }
 
-const findToday = new Date();
-const findThisYear = findToday.getFullYear();
-const findThisMonth = findToday.getMonth();
-let lasNumbersYear = findThisYear.toString().substring(2);
-let corectMonth = findThisMonth < 9 ? '0' + findThisMonth : findThisMonth;
-
-
-export default class FormContainer extends Component{
+export default class FormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // data card
-      cardNumber: '',
-      cardExpiry: '',
-      cardOwner: '',
-      cvv: '',
+      fields: {
+        ...defaultState,
+      },
       
-      // show errors
-      showErrorCardNamber: false,
-      showErrorCardExpiry: false,
-      showErrorCardOwner: false,
-      showErrorCvv: false,
+      errors: {
+        ...defaultState,
+      },
         
       buttonIsDisabled: true,
       showSuccessfulPayment: false,
@@ -40,7 +31,7 @@ export default class FormContainer extends Component{
   }
 
   componentDidMount() {
-    this.setTimerId(); 
+    this.setTimerId();
   }
 
   componentWillUnmount() {
@@ -67,21 +58,25 @@ export default class FormContainer extends Component{
     }, 1000)
   }
 
-  handleChange = (event) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+  handleChange = (e) => {
+    const name = e.target.name;
+    
+    this.setState({
+      fields: {
+        ...this.state.fields,
+        [name]: e.target.value,
+      },
+      errors: {
+        ...this.state.errors,
+        [name]: '',
+      }
+    })
 
-    if (value.length <= validDataLength[name]) {
-      this.setState({
-        [name]: value,
-      })
-    }
-    this.checkAllInputs();
+    this.checkDisableButton();
   }
 
-  checkAllInputs = () => {
-    const { cardNumber, cardExpiry, cardOwner, cvv } = this.state;
+  checkDisableButton = () => {
+    const { cardNumber, cardExpiry, cardOwner, cvv } = this.state.fields;
 
     if (cardNumber !== '' && cardExpiry !== '' && cardOwner !== '' && cvv !== '') {
       this.setState({
@@ -90,72 +85,74 @@ export default class FormContainer extends Component{
     }
   }
 
-  checkDataLength = (event) => {
-    const { cardExpiry, cvv, cardNumber, cardOwner } = this.state;
+  checkInvalidCardNumber = () => {
+    const { cardNumber } = this.state.fields;
+    const { invalidCard } = showErrorMessages;
 
-    const cardNumberLength = cardNumber.length === validDataLength.cardNumber;
-    const cardExpiryLength = cardExpiry.length === validDataLength.cardExpiry && corectMonth + lasNumbersYear <= cardExpiry;
-    const cardOwnerLength = cardOwner !== '';
-    const cvvLength = cvv.length === validDataLength.cvv;
+    const resultValidateCardNumber = validateCardNumber(cardNumber);
 
-    if (cardNumberLength && cardExpiryLength && cardOwnerLength && cvvLength) {
-      event.preventDefault();
-      this.handleSubmit();
-      
-    } else if (!cardNumberLength) {
-      this.setState({
-        showErrorCardNamber: true,
-        cvv: '',
-      });
-      this.closeError();
-      event.preventDefault();
-
-    } else if (!cardExpiryLength) {
-      this.setState({
-        showErrorCardExpiry: true,
-        cardExpiry: '',
-        cvv: '',
-      });
-      this.closeError();
-      event.preventDefault();
-
-    } else if (!cardOwnerLength) {
-      this.setState({
-        showErrorCardOwner: true,
-        cvv: '',
-      });
-      this.closeError();
-      event.preventDefault();
-
-    } else if (!cvvLength) {
-      this.setState({
-        showErrorCvv: true,
-        cvv: '',
-      });
-      this.closeError();
-      event.preventDefault();
+    if (!resultValidateCardNumber) {
+      this.setState((state) => ({
+        errors: {
+          ...state.errors,
+          cardNumber: invalidCard,
+        }
+      }));
     }
+    return resultValidateCardNumber;
   }
 
-  handleSubmit = () => {
+  checkInvalidData = () => {
+    const { cardExpiry } = this.state.fields;
+    const { cardIsNotValid, wrongDate } = showErrorMessages;
+
+    const resultValidateTwelveMonths = validateDateTwelveMonths(cardExpiry);
+    const reusltValidateCurrentDate = validateCurrentDate(cardExpiry);
+    const resultValidateDeteLength = validateCardDateLength(cardExpiry);
+    
+    if (resultValidateDeteLength || resultValidateTwelveMonths) {
+      this.setState((state) => ({
+        errors: {
+          ...state.errors,
+          cardExpiry: wrongDate,
+        }
+      }));
+    }
+
+    if (!resultValidateDeteLength && !reusltValidateCurrentDate) {
+      this.setState((state) => ({ 
+        errors: {
+          ...state.errors,
+          cardExpiry: cardIsNotValid,
+        }
+      }));
+    }
+    
+    return !resultValidateTwelveMonths && reusltValidateCurrentDate && !resultValidateDeteLength;
+  }
+
+  preValidation = () => {
+    const invalidDate = this.checkInvalidData();
+    const invalidCardNumber = this.checkInvalidCardNumber();
+
+    return invalidDate && invalidCardNumber;
+  };
+
+  submit = () => {
     const { handleCloseModal } = this.props;
     this.setState({
       showSuccessfulPayment: true
     })
     this.timerId = setTimeout(() => {
-      handleCloseModal();
+      console.log('Submit');
+      
+      // handleCloseModal();
     }, 2000);
-  }
+  } 
 
-  closeError = () => {
-    setTimeout(() => {
-      this.setState({
-        showErrorCardNamber: false,
-        showErrorCardExpiry: false,
-        showErrorCardOwner: false,
-        showErrorCvv: false,
-      })
-    }, 5000);
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.preValidation() && this.submit();
   }
 
   render() {
@@ -164,17 +161,11 @@ export default class FormContainer extends Component{
     return (
       <Form
         buttonIsDisabled={this.state.buttonIsDisabled}
-        showErrorCardNamber={this.state.showErrorCardNamber}
-        showErrorCardExpiry={this.state.showErrorCardExpiry}
-        showErrorCardOwner={this.state.showErrorCardOwner}
-        showErrorCvv={this.state.showErrorCvv}
+        errors={this.state.errors}
+        fields={this.state.fields}
         timer={this.state.timer}
-        cardNumber={this.state.cardNumber}
-        cardExpiry={this.state.cardExpiry}
-        cardOwner={this.state.cardOwner}
-        cvv={this.state.cvv}
         showSuccessfulPayment={this.state.showSuccessfulPayment}
-        checkDataLength={this.checkDataLength}
+        handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         sumToPay={sumToPay}
       />
