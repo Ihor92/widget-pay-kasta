@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import './Form.css';
 import Form from './Form';
-import { showErrorMessages } from '../HelperMessages/HelperMessages';
-
-const findToday = new Date();
-const thisYear = findToday.getFullYear();
-const thisMonth = findToday.getMonth();
+import { validateCardNumber, validateDateTwelveMonths, validateCurrentDate, validateCardDateLength} from '../../utils';
+import { showErrorMessages } from '../HelperMessages';
 
 const defaultState = {
   cardNumber: '',
@@ -34,7 +31,7 @@ export default class FormContainer extends Component {
   }
 
   componentDidMount() {
-    this.setTimerId(); 
+    this.setTimerId();
   }
 
   componentWillUnmount() {
@@ -88,68 +85,56 @@ export default class FormContainer extends Component {
     }
   }
 
-  cardExpiryError = () => {
-    const { invalidCard } = showErrorMessages;
-
-    this.setState((state) => ({
-      errors: {
-        ...state.errors,
-        cardNumber: invalidCard,
-      }
-    }));
-    return false;
-  }
-
   checkInvalidCardNumber = () => {
     const { cardNumber } = this.state.fields;
-    const str = cardNumber;
-    console.log(str.replace(/[_/]|\s+/g, '').split('').length === 16);
-    return str.replace(/[_/]|\s+/g, '').split('').length === 16 ? true : this.cardExpiryError();
+    const { invalidCard } = showErrorMessages;
+
+    const resultValidateCardNumber = validateCardNumber(cardNumber);
+
+    if (!resultValidateCardNumber) {
+      this.setState((state) => ({
+        errors: {
+          ...state.errors,
+          cardNumber: invalidCard,
+        }
+      }));
+    }
+    return resultValidateCardNumber;
   }
 
   checkInvalidData = () => {
-    const {
-      fields: { cardExpiry },
-      errors
-    } = this.state;
+    const { cardExpiry } = this.state.fields;
     const { cardIsNotValid, wrongDate } = showErrorMessages;
 
-    const separatorCardExpiry = cardExpiry.split(" ");
-    separatorCardExpiry.splice(1, 1);
+    const resultValidateTwelveMonths = validateDateTwelveMonths(cardExpiry);
+    const reusltValidateCurrentDate = validateCurrentDate(cardExpiry);
+    const resultValidateDeteLength = validateCardDateLength(cardExpiry);
     
-    const cardExpiryJoin = separatorCardExpiry.join('');
-    const foundUnderscore = cardExpiryJoin.match('_') ? true : false;
-
-    const completeYear = '20' + separatorCardExpiry[1];
-    const userEnteredMonth = Number(separatorCardExpiry[0] - 1);
-    const userEnteredYear = Number(completeYear);
-    const userEnterDate = new Date(userEnteredYear, userEnteredMonth, 1);
-
-    const todayCorectDate = new Date(thisYear, thisMonth, 1);
-
-    if ((separatorCardExpiry[0] > '12' || foundUnderscore) || null) {
+    if (resultValidateDeteLength || resultValidateTwelveMonths) {
       this.setState((state) => ({
         errors: {
           ...state.errors,
           cardExpiry: wrongDate,
         }
       }));
-      return false;
-    } else if (userEnterDate < todayCorectDate) {
+    }
+
+    if (!resultValidateDeteLength && !reusltValidateCurrentDate) {
       this.setState((state) => ({ 
         errors: {
           ...state.errors,
           cardExpiry: cardIsNotValid,
         }
       }));
-      return false;
     }
-    return true;
+    
+    return !resultValidateTwelveMonths && reusltValidateCurrentDate && !resultValidateDeteLength;
   }
 
   preValidation = () => {
     const invalidDate = this.checkInvalidData();
     const invalidCardNumber = this.checkInvalidCardNumber();
+
     return invalidDate && invalidCardNumber;
   };
 
@@ -159,8 +144,9 @@ export default class FormContainer extends Component {
       showSuccessfulPayment: true
     })
     this.timerId = setTimeout(() => {
+      console.log('Submit');
+      
       // handleCloseModal();
-      console.log("submit");
     }, 2000);
   } 
 
