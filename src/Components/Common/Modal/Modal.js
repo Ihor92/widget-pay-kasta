@@ -1,14 +1,12 @@
 import React from 'react';
 import Animation from '../Animation/Animation';
 import FormContainer from '../../Form';
+import { general } from '../../HelperMessages';
 import logo from '../../../images/mk-logo.svg';
-
 
 import './Modal.css';
 
-const sumToPay = '123 284 грн';
-const newCard = 'Нова карта';
-const typeCard = 'Visa, Mastercard';
+const {sumToPay, newCard, typeCard, toPay } = general;
 
 const Modal = ({ handleCloseModal, showModal, children }) => (
   <Animation timeout={200} show={showModal}>
@@ -18,23 +16,23 @@ const Modal = ({ handleCloseModal, showModal, children }) => (
         <div className="modal-content">
           <div className="">
 
-            <div className="modal-header ">
-              <img src={logo} alt="Логотип" />
+            <header className="modal-header ">
+              <img src={logo} alt="Kasta" />
 
-              <div className="aboutPay">
-                <p className="toPay">До сплати</p>
-                <p className="sumToPay">{sumToPay}</p>
+              <div className="modal__aboutPay">
+                <p className="modal__toPay">{toPay}</p>
+                <p className="modal__sumToPay">{sumToPay}</p>
               </div>
-            </div>
+            </header>
 
-            <div className="modalForm">
-              <div className="modalForm--header">
-                <div className="circleIcon">
-                  <div className="circleSmallIcon"></div>
+            <div className="modal__form">
+              <div className="modal__form--header">
+                <div className="modal__form--circleIcon">
+                  <div className="modal__form--smallIcon"></div>
                 </div>
-                <div className="infoCard--text">
-                  <p className="newCard">{newCard}</p>
-                  <p className="typeCard">{typeCard}</p>
+                <div className="modal__form--infoCard">
+                  <p className="modal__form--newCard">{newCard}</p>
+                  <p className="modal__form--typeCard">{typeCard}</p>
                 </div>
               </div>
               
@@ -44,16 +42,16 @@ const Modal = ({ handleCloseModal, showModal, children }) => (
               />
             </div>
             
-            <div className="modal-footer">
-              <img className="footerLogo" src={logo} alt="Логотип" />
-              <span className="footerLogoPay">Pay</span>
-            </div>
+            <footer className="modal-footer">
+              <img className="modal__logo-footer" src={logo} alt="Kasta pay" />
+              <span className="modal__Logo-pay">Pay</span>
+            </footer>
           </div>
         </div>
 
         <button
           type="button"
-          className="close closeButton"
+          className="close modal__closeButton"
           data-dismiss="modal"
           aria-label="Close"
           onClick={handleCloseModal}

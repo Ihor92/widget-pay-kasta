@@ -31,4 +31,8 @@ export const showErrorMessages = {
 
 export const general = {
   successfulPay: "Оплата прошла успешно",
+  sumToPay: "123 284 грн",
+  newCard: "Нова карта",
+  typeCard: "Visa, Mastercard",
+  toPay: "До сплати",
 } 

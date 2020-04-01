@@ -144,9 +144,7 @@ export default class FormContainer extends Component {
       showSuccessfulPayment: true
     })
     this.timerId = setTimeout(() => {
-      console.log('Submit');
-      
-      // handleCloseModal();
+      handleCloseModal();
     }, 2000);
   } 
 
